@@ -7,7 +7,7 @@ despesas = 0.0
 saldo = receitas - despesas
 
 
-def cadastroCliente():
+def cadastrar_cliente():
   continuar = 's'
   print(continuar)
   while(continuar == 's'):
@@ -25,15 +25,13 @@ def cadastroCliente():
       "endereco": endereco
     }
     lista_clientes.append(cliente)
-    print(cliente)
-    print(lista_clientes)
 
     continuar = input("continuar? ")
 
-  cadastroReceita()
   
-def cadastroReceita():
+def cadastrar_receita():
   global receitas,continuar
+  continuar = 's'
   while(continuar == 's'):
     
     print("\nCadastro de Receita")
@@ -66,14 +64,45 @@ def cadastroReceita():
     continuar = input("continuar? ")
 
 
-'''a = int(input("esc: "))
 
 
+while True:
+  print("\n==== Menu ====")
+  print("1. Cadastrar Cliente")
+  print("2. Cadastrar Receita")
+  print("3. Cadastrar Despesa")
+  print("4. Atestar Recebimento de Receita")
+  print("5. Pagar Conta")
+  print("6. Exibir relatórios financeiros")
+  print("0. Sair")
+  '''
+  print("6. Listar Receitas Recebidas")
+  print("7. Listar Despesas Recebidas")
+  print("8. Listar Despesas a Receber")
+  print("9. Listar Clientes que Melhor Impactaram o Financeiro")
+  print("10. Listar Despesas Mais Caras por Tipo")
+  print("11. Listar Despesas por Categoria (Interna/Externa)")
+  print("12. Comparar Períodos (por Lucro)")
+  print("13. Exibir Saldo Atual")
+  print("0. Sair")'''
+
+  escolha = input("Escolha uma opção: ")
+
+  if escolha == "0":
+    break
+  elif escolha == "1":
+    cadastrar_cliente()
+  elif escolha == "2":
+    cadastrar_receita()
+  else:
+    print("Opção inválida. Tente novamente.")
+  '''elif escolha == "3":
+      cadastrar_despesa()
+  elif escolha == "4":
+      atestar_recebimento_receita()
+  elif escolha == "5":
+      pagar_conta()
+  elif escolha == "6":
+      relatorios_financeiros()'''
 
 
-if a == 1:
-  cadastroCliente()
-elif a == 2:
-  cadastroReceita()
-else:
-  print(":((((")'''
