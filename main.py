@@ -1,3 +1,5 @@
+import os
+
 lista_clientes = []
 lista_receitas = []
 global receitas, continuar
@@ -7,27 +9,64 @@ despesas = 0.0
 saldo = receitas - despesas
 
 
+
+
 def cadastrar_cliente():
+
+  tamanho_arquivo = os.path.getsize("clientes.txt")
+
+  if tamanho_arquivo == 0:
+    with open('clientes.txt', 'w') as arquivo_clientes:
+      #depois adicionar loop de clientes
+      continuar = 's'
+      while(continuar == 's'):
+  
+        print("\nCadastro de Cliente")
+        nome = input("Nome: ")
+        cpf_cnpj = input("CPF ou CNPJ: ")
+        telefone = input("Telefone: ")
+        endereco = input("Endereço: ")
+  
+        cliente = {
+          "nome": nome,
+          "cpf_cnpj": cpf_cnpj,
+          "telefone": telefone,
+          "endereco": endereco
+        }
+  
+        arquivo_clientes.write(str(cliente))
+
+        #lista_clientes.append(cliente)
+  
+        continuar = input("continuar? ")
+  '''else:
+    arquivo_clientes = open('clientes.txt', 'a')
+    loop_clientes()'''
+  
+  
+
+'''def loop_clientes():
   continuar = 's'
-  print(continuar)
   while(continuar == 's'):
-    
+
     print("\nCadastro de Cliente")
     nome = input("Nome: ")
     cpf_cnpj = input("CPF ou CNPJ: ")
     telefone = input("Telefone: ")
     endereco = input("Endereço: ")
-  
+
     cliente = {
       "nome": nome,
       "cpf_cnpj": cpf_cnpj,
       "telefone": telefone,
       "endereco": endereco
     }
+
+    arquivo_clientes.write()
     lista_clientes.append(cliente)
 
     continuar = input("continuar? ")
-
+'''
   
 def cadastrar_receita():
   global receitas,continuar
