@@ -105,4 +105,3 @@ while True:
   elif escolha == "6":
       relatorios_financeiros()'''
 
-
