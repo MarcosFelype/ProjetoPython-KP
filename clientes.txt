@@ -1,1 +1,9 @@
 {'nome': 'lider', 'cpf_cnpj': '1231', 'telefone': 'fgd', 'endereco': 'ertgeg'}
+
+{'nome': 'Gilmar ', 'cpf_cnpj': '1234', 'telefone': '4567', 'endereco': 'coite'}
+
+{'nome': 'Franscisco', 'cpf_cnpj': '435', 'telefone': '9909', 'endereco': 'coite'}
+
+{'nome': 'Maria', 'cpf_cnpj': '456', 'telefone': '777', 'endereco': 'coite'}
+
+{'nome': 'Marcos', 'cpf_cnpj': '123', 'telefone': '3453', 'endereco': 'coite'}

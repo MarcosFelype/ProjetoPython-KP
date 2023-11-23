@@ -1,8 +1,12 @@
+
 import os
 
 lista_clientes = []
 lista_receitas = []
-global receitas, continuar
+global receitas
+global continuar
+global tamanho_arquivo_clientes
+tamanho_arquivo_clientes = os.path.getsize("clientes.txt")
 continuar = 's'
 receitas = 0.0
 despesas = 0.0
@@ -13,9 +17,8 @@ saldo = receitas - despesas
 
 def cadastrar_cliente():
 
-  tamanho_arquivo = os.path.getsize("clientes.txt")
 
-  if tamanho_arquivo == 0:
+  if tamanho_arquivo_clientes == 0:
     with open('clientes.txt', 'w') as arquivo_clientes:
       #depois adicionar loop de clientes
       continuar = 's'
@@ -39,9 +42,30 @@ def cadastrar_cliente():
         #lista_clientes.append(cliente)
   
         continuar = input("continuar? ")
-  '''else:
-    arquivo_clientes = open('clientes.txt', 'a')
-    loop_clientes()'''
+  else:
+    with open('clientes.txt', 'a') as arquivo_clientes:
+      #loop_clientes() --> depois adicionar loop clientes
+      continuar = 's'
+      while(continuar == 's'):
+
+        print("\nCadastro de Cliente")
+        nome = input("Nome: ")
+        cpf_cnpj = input("CPF ou CNPJ: ")
+        telefone = input("Telefone: ")
+        endereco = input("Endereço: ")
+
+        cliente = {
+          "nome": nome,
+          "cpf_cnpj": cpf_cnpj,
+          "telefone": telefone,
+          "endereco": endereco
+        }
+
+        arquivo_clientes.write("\n\n" + str(cliente))
+
+        #lista_clientes.append(cliente)
+
+        continuar = input("\ncontinuar? ")
   
   
 
@@ -69,36 +93,49 @@ def cadastrar_cliente():
 '''
   
 def cadastrar_receita():
-  global receitas,continuar
-  continuar = 's'
+  global continuar
+  global receitas
+  
   while(continuar == 's'):
     
     print("\nCadastro de Receita")
-    nome = input("Nome do cliente: ")
-    valor_venda = float(input("Valor da venda: "))
-    data_atual = input("Data de hoje: ")
-    data_recebimento = input("Data em que o valor será recebido: ")
+    input("Nome do cliente: ")
+    float(input("Valor da venda: "))
+    input("Data de hoje: ")
+    input("Data em que o valor será recebido: ")
     
   
-    receita = {
-      "nome": nome,
-      "valor_venda": valor_venda,
-      "data_atual": data_atual,
-      "data_recebimento": data_recebimento
-    }
-    if lista_clientes != []:
+    
+    import json
+    
+    if tamanho_arquivo_clientes != 0:
 
       #verifica se na lista_clientes, entre os dicionarios de cliente, há algum nome igual ao que foi digitado
-      if any(cliente['nome'] == nome for cliente in lista_clientes):
-        lista_receitas.append(receita)
-        print(lista_receitas)
-        receitas += valor_venda
-        print(receitas)
-        print("Cadastro realizado com sucesso!")
-      else: 
-        print("Não existe esse cliente")
+      with open('clientes.txt', 'r') as arquivo_clientes:
+        clientes_cadastrados = arquivo_clientes.readlines()
+
+
+        for cliente in clientes_cadastrados:
+          #cliente_dict = dict(cliente)
+          cliente_dict = json.loads(cliente.replace(" \' "," \" "))
+          print(type(cliente_dict))
+          print(cliente)
+          print("\n")
+          print(cliente_dict)
+        '''    
+        if any(cliente["nome"] == nome_cliente for cliente in clientes_cadastrados):
+          lista_receitas.append(receita)
+          print(lista_receitas)
+          receitas += valor_venda
+          print(receitas)
+          print("Cadastro realizado com sucesso!")
+        else: 
+          print("Não existe esse cliente")
+          '''
     else:
       print("Não existe nenhum cliente cadastrado!")
+        
+        
 
     continuar = input("continuar? ")
 
