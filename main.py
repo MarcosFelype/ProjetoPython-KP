@@ -116,12 +116,15 @@ def cadastrar_receita():
 
 
         for cliente in clientes_cadastrados:
-          #cliente_dict = dict(cliente)
-          cliente_dict = json.loads(cliente.replace(" \' "," \" "))
-          print(type(cliente_dict))
-          print(cliente)
-          print("\n")
-          print(cliente_dict)
+          if cliente != '\n':
+
+            #convertendo cada registro string de cliente para dicionário python
+            cliente_dict = json.loads(cliente.replace("\'","\""))
+            
+
+          
+          
+        
         '''    
         if any(cliente["nome"] == nome_cliente for cliente in clientes_cadastrados):
           lista_receitas.append(receita)
